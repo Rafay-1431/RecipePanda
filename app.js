@@ -1103,7 +1103,7 @@ function recipedetailrender() {
 }
 function back(){
     localStorage.removeItem('selectedId');
-    window.location.href = "/index.html";
+    window.location.href = "index.html";
 }
 // Check karo ke hum kis page par hain
 if (document.getElementById('card')) {
