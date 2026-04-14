@@ -1,0 +1,144 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 50px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky; 
+    top: 0;
+    z-index: 1000;
+    margin-bottom: 30px;
+}
+
+.logo h1 {
+    color: #333;
+    margin: 0;
+    font-size: 24px;
+}
+
+.logo span {
+    color: #e67e22; 
+}
+
+.search-bar input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #e67e22;
+}
+
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        padding: 15px;
+    }
+    .search-bar {
+        margin: 10px 0;
+    }
+    .nav-links {
+        margin-top: 10px;
+    }
+}
+/* Container jo saare cards ko pakray ga */
+#card {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.recipe-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 280px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+
+.recipe-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Card ki image */
+.recipe-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+
+.recipe-card h2 {
+    font-size: 1.2rem;
+    margin: 15px 0 10px;
+    color: #333;
+}
+
+.recipe-card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* View Details Button */
+.recipe-card button {
+    background-color: #e67e22; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.recipe-card button:hover {
+    background-color: #d35400;
+}
+
+::-webkit-scrollbar {
+    width: 10px; 
+    background-color: #f1f1f1; 
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #e67e22; 
+    border-radius: 10px; 
+    border: 2px solid #f1f1f1;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #d35400; 
+}
+
+/* 4. Scrollbar ka track (raasta) */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1); 
+    border-radius: 10px;
+}

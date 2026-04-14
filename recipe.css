@@ -1,0 +1,115 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+
+#details {
+    background-color: white;
+    max-width: 800px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+#details h1 {
+    color: #333;
+    font-size: 2.5rem;
+    margin-top: 0;
+    border-bottom: 3px solid #e67e22; /* Foodpanda orange line */
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+
+#details img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+#details h3 {
+    color: #e67e22;
+    font-size: 1.5rem;
+    margin-top: 25px;
+    background-color: #fff5eb;
+    padding: 10px;
+    border-left: 5px solid #e67e22;
+}
+
+#details ul, #details ol {
+    padding-left: 20px;
+    color: #555;
+}
+
+#details li {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+
+button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 30px;
+    display: block;
+}
+
+button:hover {
+    background-color: #e67e22;
+    transform: scale(1.05);
+}
+
+
+@media (max-width: 600px) {
+    #details {
+        padding: 15px;
+    }
+    #details img {
+        height: 250px;
+    }
+    #details h1 {
+        font-size: 1.8rem;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px; 
+    background-color: #f1f1f1;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #e67e22;
+    border-radius: 10px; 
+    border: 2px solid #f1f1f1; 
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #d35400; 
+}
+
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1); 
+    border-radius: 10px;
+}
