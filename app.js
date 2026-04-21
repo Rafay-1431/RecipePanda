@@ -1028,17 +1028,14 @@ recipes = [
 ]
 
 
-
-console.log(recipes[0]);
-
-function render() {
+function render(data) {
     let div = document.getElementById('card');
     if (div) {
         div.innerHTML = "";
 
-        for (let i = 0; i < recipes.length; i++) {
+        for (let i = 0; i < data.length; i++) {
 
-            let recipe = recipes[i];
+            let recipe = data[i];
             div.innerHTML += `
      <div class="recipe-card">
         <img src="${recipe.image}" alt="${recipe.name}">
@@ -1051,6 +1048,39 @@ function render() {
     `
         }
     }
+}
+
+function setupDropdown() {
+    let select = document.getElementById('cuisine-filter');
+    if (!select) return;
+
+    let uniqueCuisines = [];
+    for (let i = 0; i < recipes.length; i++) {
+
+        let c = recipes[i].cuisine;
+        if (!uniqueCuisines.includes(c)) {
+            uniqueCuisines.push(c);
+            select.innerHTML += `<option value="${c}">${c}</option>`;
+        }
+    }
+}
+
+function filterdata() {
+    let selectedvalue = document.getElementById('cuisine-filter').value;
+    let filteredRecipes = [];
+
+    if (selectedvalue == "all") {
+        filteredRecipes = recipes;
+    }
+    else {
+        for (var i = 0; i < recipes.length; i++) {
+
+            if(recipes[i].cuisine === selectedvalue){
+                filteredRecipes.push(recipes[i])
+            }
+        }
+    }
+    render(filteredRecipes);
 }
 
 function viewDetails(id) {
@@ -1078,7 +1108,7 @@ function recipedetailrender() {
         }
 
         let instructionList = "";
-        for (let i = 0 ; i <recipe.instructions.length ; i++ ){
+        for (let i = 0; i < recipe.instructions.length; i++) {
             instructionList += `<li>${recipe.instructions[i]}</li>`
         }
 
@@ -1101,15 +1131,18 @@ function recipedetailrender() {
 `
     }
 }
-function back(){
+function back() {
     localStorage.removeItem('selectedId');
     window.location.href = "index.html";
 }
 // Check karo ke hum kis page par hain
 if (document.getElementById('card')) {
-    render(); // Sirf Main page par chale
+    render(recipes); // Sirf Main page par chale
+    setupDropdown();
 }
 
 if (document.getElementById('details')) {
     recipedetailrender(); // Sirf Detail page par chale
 }
+
+
