@@ -1032,11 +1032,8 @@ function render(data) {
     let div = document.getElementById('card');
     if (div) {
         div.innerHTML = "";
-
-        for (let i = 0; i < data.length; i++) {
-
-            let recipe = data[i];
-            div.innerHTML += `
+data.forEach(recipe => {
+     div.innerHTML += `
      <div class="recipe-card">
         <img src="${recipe.image}" alt="${recipe.name}">
         <h2>${recipe.name}</h2>
@@ -1046,8 +1043,8 @@ function render(data) {
         <button onclick="viewDetails(${recipe.id})">View Details</button>
     </div>
     `
-        }
-    }
+});
+}
 }
 
 function setupDropdown() {
@@ -1055,14 +1052,13 @@ function setupDropdown() {
     if (!select) return;
 
     let uniqueCuisines = [];
-    for (let i = 0; i < recipes.length; i++) {
-
-        let c = recipes[i].cuisine;
+    recipes.forEach(recipe => {
+         let c = recipes.cuisine;
         if (!uniqueCuisines.includes(c)) {
             uniqueCuisines.push(c);
             select.innerHTML += `<option value="${c}">${c}</option>`;
         }
-    }
+    });
 }
 
 function filterdata() {
@@ -1073,12 +1069,7 @@ function filterdata() {
         filteredRecipes = recipes;
     }
     else {
-        for (var i = 0; i < recipes.length; i++) {
-
-            if(recipes[i].cuisine === selectedvalue){
-                filteredRecipes.push(recipes[i])
-            }
-        }
+       filteredRecipes = recipes.filter(recipe => recipe.cuisine === selectedvalue)
     }
     render(filteredRecipes);
 }
@@ -1093,56 +1084,44 @@ function recipedetailrender() {
     let recipeDetail = document.getElementById('details');
 
     if (!selectedId || !recipeDetail) return;
-    let recipe = null;
+    let recipe = recipes.find(r => r.id == selectedId);
 
-    for (let i = 0; i < recipes.length; i++) {
-        if (recipes[i].id == selectedId) {
-            recipe = recipes[i];
-            break;
-        }
-    }
+
     if (recipe) {
+       if (recipe) {
         let ingridientList = "";
-        for (let i = 0; i < recipe.ingredients.length; i++) {
-            ingridientList += `<li>${recipe.ingredients[i]}</li>`
-        }
+        recipe.ingredients.forEach(item => {
+            ingridientList += `<li>${item}</li>`;
+        });
 
         let instructionList = "";
-        for (let i = 0; i < recipe.instructions.length; i++) {
-            instructionList += `<li>${recipe.instructions[i]}</li>`
-        }
-
-
-
+        recipe.instructions.forEach(step => {
+            instructionList += `<li>${step}</li>`;
+        });
 
         recipeDetail.innerHTML = `
-
-             <h1>${recipe.name}</h1>
-             <img src="${recipe.image}" alt="${recipe.name}">
-             <h3>Ingridients:</h3>
-             <ul>
-             ${ingridientList}
-             </ul>
-              <h3>Instructions:</h3>
-             <ol>
-             ${instructionList}
-             </ol>
-             <button onclick="back()">Back to Home</button>
-`
+            <h1>${recipe.name}</h1>
+            <img src="${recipe.image}" alt="${recipe.name}">
+            <h3>Ingredients:</h3>
+            <ul>${ingridientList}</ul>
+            <h3>Instructions:</h3>
+            <ol>${instructionList}</ol>
+            <button onclick="back()">Back to Home</button>
+        `;
     }
+}
 }
 function back() {
     localStorage.removeItem('selectedId');
     window.location.href = "index.html";
 }
-// Check karo ke hum kis page par hain
+
 if (document.getElementById('card')) {
-    render(recipes); // Sirf Main page par chale
+    render(recipes);
     setupDropdown();
 }
 
 if (document.getElementById('details')) {
-    recipedetailrender(); // Sirf Detail page par chale
+    recipedetailrender();
 }
-
 
